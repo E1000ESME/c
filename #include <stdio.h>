@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+#define SIZE 8
+#define EMPTY '.'
+#define BLACK 'X'
+#define WHITE 'O'
+
+// Fonction pour afficher les lettres de colonnes (A B C...)
+void printHeader() {
+    int i;
+    printf("    "); 
+    for (i = 0; i < SIZE; i++) {
+        printf("%c ", 'A' + i);
+    }
+    printf("\n");
+}
+
+// Fonction pour afficher une ligne de séparation
+void printSeparator() {
+    int i;
+    printf("  +");
+    for (i = 0; i < SIZE; i++) {
+        printf("--");
+    }
+    printf("+\n");
+}
+
+// Fonction pour afficher le plateau complet
+void displayBoard(char board[SIZE][SIZE]) {
+    int i, j;
+    printHeader();
+    printSeparator();
+    
+    for (i = 0; i < SIZE; i++) {
+        printf("%2d| ", i + 1); // Indice de ligne (1 à 8)
+        for (j = 0; j < SIZE; j++) {
+            printf("%c ", board[i][j]);
+        }
+        printf("|\n");
+    }
+    
+    printSeparator();
+}
+
+int main() {
+    char gameBoard[SIZE][SIZE];
+    int i, j;
+
+    // Remplissage initial du plateau avec du vide
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            gameBoard[i][j] = EMPTY;
+        }
+    }
+
+    // Position de départ officielle de l'Othello
+    gameBoard[3][3] = WHITE;
+    gameBoard[3][4] = BLACK;
+    gameBoard[4][3] = BLACK;
+    gameBoard[4][4] = WHITE;
+
+    printf("PROJET OTHELLO - MAQUETTE ASCII\n\n");
+    displayBoard(gameBoard);
+    
+    return 0;
+}
